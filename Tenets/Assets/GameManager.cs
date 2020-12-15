@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public int player2SetScore;
     public ballCtrl con;
 
+    public GameObject winPanel;
+    public Text wintext;
+
     public Text SetScore;
     public Text Score;
     // Start is called before the first frame update
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SetServicePos();
+        winPanel.SetActive(false);
     }
     // Update is called once per frame
 
@@ -101,6 +105,27 @@ public class GameManager : MonoBehaviour
             player2SetScore += 1;
             init();
         }
+
+        if(player2SetScore > 2)
+        {
+            winPanel.SetActive(true);
+            wintext.text = "P2 Win!";
+        }
+        else if(player2SetScore > 2)
+        {
+            winPanel.SetActive(true);
+            wintext.text = "P1 Win!";
+        }
+    }
+
+    public void Retry()
+    {
+        player1SetScore = 0;
+        player2SetScore = 0;
+        playerScore1 = 0;
+        playerScore2 = 0;
+        servicePlayer = 0;
+        SetServicePos();
     }
 
     void SetServicePos()
