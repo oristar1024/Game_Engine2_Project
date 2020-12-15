@@ -8,16 +8,19 @@ public class PlayerCtrl : MonoBehaviour
     public Transform ball;
     public Transform hitPosition;
     bool hit;
-    bool canhit;
+
     float speed = 15f;
     public float force;
     float hitTime = 0.1f;
-    float hitCheckTime = 1f;
     float hit_eTime;
-    float canhit_eTime;
-    Collider ballCollider;
     public int player;
+    Collider mycoll;
     // Start is called before the first frame update
+    private void Start()
+    {
+        mycoll = GetComponent<Collider>();
+        mycoll.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,7 +30,10 @@ public class PlayerCtrl : MonoBehaviour
             float h = 0;
             float v = 0;
             if (Input.GetKeyDown(KeyCode.Return) && hit == false)
+            {
                 hit = true;
+                mycoll.enabled = true;
+            }
 
             if (Input.GetKey(KeyCode.UpArrow))
                 v += 1;
@@ -48,7 +54,10 @@ public class PlayerCtrl : MonoBehaviour
             float v = 0;
 
             if (Input.GetKeyDown(KeyCode.Space) && hit == false)
+            {
                 hit = true;
+                mycoll.enabled = true;
+            }
 
             if (Input.GetKey(KeyCode.W))
                 v += 1;
@@ -88,45 +97,27 @@ public class PlayerCtrl : MonoBehaviour
             hit_eTime += Time.deltaTime;
         }
 
-        if (canhit)
-        {
-            canhit_eTime += Time.deltaTime;
-            if (canhit_eTime > hitCheckTime)
-            {
-                canhit = false;
-                canhit_eTime = 0;
-            }
-        }
-
         if(hit_eTime > hitTime)
         {
             hit_eTime = 0;
             hit = false;
+            mycoll.enabled = false;
         }
-
-        if(hit && canhit)
-        {
-            Vector3 dir = hitPosition.position - ball.position;
-            dir.y = 0;
-            ballCollider.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0, 7, 0);
-            GameManager.instance.player_turn = player;
-            GameManager.instance.boundCount = 0;
-            hit = false;
-            canhit = false;
-            hit_eTime = 0;
-            canhit_eTime = 0;
-            GameManager.instance.Clear();
-        }
-
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ball")
         {
-            canhit = true;
-            ballCollider = other;
+            Vector3 dir = hitPosition.position - ball.position;
+            dir.y = 0;
+            other.GetComponent<Rigidbody>().velocity = dir.normalized * force + new Vector3(0, 7, 0);
+            GameManager.instance.player_turn = player;
+            GameManager.instance.boundCount = 0;
+            hit = false;
+            hit_eTime = 0;
+            mycoll.enabled = false;
+            GameManager.instance.Clear();
         }
     }
 }
