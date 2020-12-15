@@ -10,11 +10,11 @@ public class ballCtrl : MonoBehaviour
     public bool OnConversion;
     bool p1Conversion = true;
     bool p2Conversion = true;
-    Rigidbody rigidbody;
+    Rigidbody rb;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -36,15 +36,15 @@ public class ballCtrl : MonoBehaviour
         if (player == 0 && p1Conversion)
         {
             OnConversion = true;
-            rigidbody.velocity = new Vector3(0, 0, 0);
-            rigidbody.useGravity = false;
+            rb.velocity = new Vector3(0, 0, 0);
+            rb.useGravity = false;
             p1Conversion = false;
         }
         else if(player == 1 && p2Conversion)
         {
             OnConversion = true;
-            rigidbody.velocity = new Vector3(0, 0, 0);
-            rigidbody.useGravity = false;
+            rb.velocity = new Vector3(0, 0, 0);
+            rb.useGravity = false;
             p2Conversion = false;
         }
     }
@@ -65,12 +65,12 @@ public class ballCtrl : MonoBehaviour
         eTime += Time.deltaTime;
         if(eTime > saveTime && OnConversion == false)
         {
-            posStack.Push(rigidbody.velocity);
+            posStack.Push(rb.velocity);
             eTime = 0;
         }
         else if(eTime > saveTime && OnConversion && posStack.Count != 0)
         {
-            rigidbody.velocity = -posStack.Pop();
+            rb.velocity = -posStack.Pop();
             eTime = 0;
         }
         else if(eTime > saveTime && posStack.Count == 0 && OnConversion)

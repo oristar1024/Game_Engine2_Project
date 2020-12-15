@@ -110,11 +110,13 @@ public class GameManager : MonoBehaviour
         {
             winPanel.SetActive(true);
             wintext.text = "P2 Win!";
+            Time.timeScale = 0;
         }
-        else if(player2SetScore > 2)
+        else if(player1SetScore > 2)
         {
             winPanel.SetActive(true);
             wintext.text = "P1 Win!";
+            Time.timeScale = 0;
         }
     }
 
@@ -125,6 +127,8 @@ public class GameManager : MonoBehaviour
         playerScore1 = 0;
         playerScore2 = 0;
         servicePlayer = 0;
+        Time.timeScale = 1;
+        winPanel.SetActive(false);
         SetServicePos();
     }
 
