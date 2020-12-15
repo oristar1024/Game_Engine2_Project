@@ -37,7 +37,8 @@ public class PlayerCtrl : MonoBehaviour
                 h -= 1;
             if (Input.GetKey(KeyCode.RightArrow))
                 h += 1;
-
+            if (Input.GetKeyDown(KeyCode.L))
+                GameManager.instance.Conversion(player);
             Vector3 moveDir = (-Vector3.forward * h) + (Vector3.right * v);
             transform.Translate(moveDir.normalized * speed * Time.deltaTime);
         }
@@ -57,7 +58,8 @@ public class PlayerCtrl : MonoBehaviour
                 h -= 1;
             if (Input.GetKey(KeyCode.D))
                 h += 1;
-
+            if (Input.GetKeyDown(KeyCode.R))
+                GameManager.instance.Conversion(player);
             Vector3 moveDir = (Vector3.forward * h) + (-Vector3.right * v);
             transform.Translate(moveDir.normalized * speed * Time.deltaTime);
         }
@@ -113,6 +115,7 @@ public class PlayerCtrl : MonoBehaviour
             canhit = false;
             hit_eTime = 0;
             canhit_eTime = 0;
+            GameManager.instance.Clear();
         }
 
         

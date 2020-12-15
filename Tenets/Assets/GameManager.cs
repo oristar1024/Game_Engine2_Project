@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform player2Pos;
     public int player1SetScore;
     public int player2SetScore;
+    public ballCtrl con;
 
     public Text SetScore;
     public Text Score;
@@ -62,6 +63,17 @@ public class GameManager : MonoBehaviour
         SetServicePos();
     }
 
+    public void Conversion(int player)
+    {
+        if (player == player_turn)
+            con.Conversion(player);
+    }
+
+    public void Clear()
+    {
+        con.Clear();
+    }
+
     void Update()
     {
         if(boundCount > 1)
@@ -95,8 +107,10 @@ public class GameManager : MonoBehaviour
     {
         boundCount = 0;
         SetScoreText();
+        con.init();
         if(servicePlayer == 0)
         {
+            player_turn = 1;
             if(playerScore1 % 2 == 0)
             {
                 player1Pos.position = new Vector3(-35, 2, -5);
@@ -114,6 +128,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            player_turn = 0;
             if(playerScore2 % 2 == 0)
             {
                 player1Pos.position = new Vector3(-35, 2, 0);

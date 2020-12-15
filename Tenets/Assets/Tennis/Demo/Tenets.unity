@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4a08c55c233994781670c7ce6a3bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnConversion: 0
 --- !u!1 &590931312
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +467,7 @@ MonoBehaviour:
   player2Pos: {fileID: 1003038375}
   player1SetScore: 0
   player2SetScore: 0
+  con: {fileID: 359328725}
   SetScore: {fileID: 1091225434}
   Score: {fileID: 590931314}
 --- !u!4 &1065479918
@@ -585,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 573574272317662594, guid: 946eba9b1e7d91041820a48f5ba1fa1d,
         type: 3}
       propertyPath: m_Mass
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 573574272317662594, guid: 946eba9b1e7d91041820a48f5ba1fa1d,
         type: 3}
@@ -935,6 +937,11 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 359328724}
+    - target: {fileID: 483465361867966108, guid: bdad166c598d3a9439485e51ad2b4a06,
+        type: 3}
+      propertyPath: conversion
+      value: 
+      objectReference: {fileID: 359328725}
     - target: {fileID: 483465361867966109, guid: bdad166c598d3a9439485e51ad2b4a06,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1143,6 +1150,11 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 359328724}
+    - target: {fileID: 3727342957504051969, guid: 9d69b4f2488004642ba3c2a399941df5,
+        type: 3}
+      propertyPath: conversion
+      value: 
+      objectReference: {fileID: 359328725}
     - target: {fileID: 3727342957504051980, guid: 9d69b4f2488004642ba3c2a399941df5,
         type: 3}
       propertyPath: m_Name
